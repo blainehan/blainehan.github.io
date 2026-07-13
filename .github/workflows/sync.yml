@@ -1,0 +1,36 @@
+name: 네이버 블로그 자동 동기화
+
+on:
+  schedule:
+    - cron: "0 22 * * *"   # 매일 KST 오전 7시 (UTC 22:00)
+  workflow_dispatch: {}     # 수동 실행 버튼
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 의존성 설치
+        run: pip install requests
+
+      - name: RSS 동기화 실행
+        env:
+          NAVER_BLOG_ID: lumi_translate
+          SITE_URL: https://www.YOURDOMAIN.com
+        run: python scripts/sync_naver.py
+
+      - name: 변경사항 커밋
+        run: |
+          git config user.name "lumi-sync-bot"
+          git config user.email "actions@github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "자동 동기화: 네이버 블로그 새 글 반영"
+          git push
