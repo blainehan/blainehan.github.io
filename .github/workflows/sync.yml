@@ -24,7 +24,7 @@ jobs:
       - name: RSS 동기화 실행
         env:
           NAVER_BLOG_ID: lumi_translate
-          SITE_URL: https://www.YOURDOMAIN.com
+          SITE_URL: https://www.lumitrans.co.kr
         run: python scripts/sync_naver.py
 
       - name: 변경사항 커밋
