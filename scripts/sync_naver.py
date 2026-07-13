@@ -10,7 +10,7 @@
   python scripts/sync_naver.py
 환경변수 (선택):
   NAVER_BLOG_ID  (기본: lumi_translate)
-  SITE_URL       (기본: https://www.YOURDOMAIN.com)
+  SITE_URL       (기본: https://www.lumitrans.co.kr)
 """
 
 import os
@@ -29,7 +29,7 @@ import requests
 
 # ---------------------------------------------------------------- 설정
 BLOG_ID = os.environ.get("NAVER_BLOG_ID", "lumi_translate")
-SITE_URL = os.environ.get("SITE_URL", "https://www.YOURDOMAIN.com").rstrip("/")
+SITE_URL = os.environ.get("SITE_URL", "https://www.lumitrans.co.kr").rstrip("/")
 RSS_URL = f"https://rss.blog.naver.com/{BLOG_ID}.xml"
 
 ROOT = Path(__file__).resolve().parent.parent

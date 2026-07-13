@@ -47,10 +47,10 @@
 
 ## 5. 도메인 확정 후 — 파일 내 주소 일괄 교체 (1회)
 
-모든 파일의 `YOURDOMAIN.com`을 실제 도메인으로 교체합니다:
+모든 파일의 `lumitrans.co.kr`을 실제 도메인으로 교체합니다:
 ```bash
-grep -rl "YOURDOMAIN.com" . --include="*.html" --include="*.py" --include="*.yml" --include="*.txt" \
-  | xargs sed -i 's/www.YOURDOMAIN.com/www.실제도메인.co.kr/g'
+grep -rl "lumitrans.co.kr" . --include="*.html" --include="*.py" --include="*.yml" --include="*.txt" \
+  | xargs sed -i 's/www.lumitrans.co.kr/www.실제도메인.co.kr/g'
 ```
 GitHub 웹에서 직접 할 경우: 각 파일 편집 화면에서 찾아 바꾸기.
 

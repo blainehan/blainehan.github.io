@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.YOURDOMAIN.com/sitemap.xml
+Sitemap: https://www.lumitrans.co.kr/sitemap.xml
