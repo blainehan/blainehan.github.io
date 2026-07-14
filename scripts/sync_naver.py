@@ -38,8 +38,12 @@ SITE_URL = os.environ.get("SITE_URL", "https://www.lumitrans.co.kr").rstrip("/")
 RSS_URL = f"https://rss.blog.naver.com/{BLOG_ID}.xml"
 
 # 홈페이지에 게시하지 않을 카테고리 (쉼표로 구분, 환경변수로 재정의 가능)
+def _norm_cat(s: str) -> str:
+    """카테고리명 비교용 정규화: 모든 종류의 공백(일반/전각/NBSP 등) 제거"""
+    return re.sub(r"[\s\u00a0\u3000]+", "", s or "")
+
 EXCLUDE_CATEGORIES = {
-    c.strip() for c in os.environ.get(
+    _norm_cat(c) for c in os.environ.get(
         "EXCLUDE_CATEGORIES", "번역서 소개,오시는 길,번역과 일상"
     ).split(",") if c.strip()
 }
@@ -330,7 +334,7 @@ def cleanup_excluded(known: dict) -> int:
     for link, rec in list(known.items()):
         if rec.get("excluded"):
             continue
-        if rec.get("category", "").strip() in EXCLUDE_CATEGORIES:
+        if _norm_cat(rec.get("category", "")) in EXCLUDE_CATEGORIES:
             slug = rec.get("slug", "")
             if slug:
                 f = BLOG_DIR / f"{slug}.html"
@@ -358,7 +362,7 @@ def main():
     for post in fetch_rss():
         if post["link"] in known:
             continue
-        if post.get("category", "").strip() in EXCLUDE_CATEGORIES:
+        if _norm_cat(post.get("category", "")) in EXCLUDE_CATEGORIES:
             print(f"  제외(카테고리: {post['category']}): {post['title'][:36]}")
             known[post["link"]] = {"excluded": True, "category": post["category"]}
             new_count_dummy = None  # 기록만 남기고 게시하지 않음
