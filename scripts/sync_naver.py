@@ -27,6 +27,11 @@ from urllib.parse import urlparse
 
 import requests
 
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    BeautifulSoup = None
+
 # ---------------------------------------------------------------- 설정
 BLOG_ID = os.environ.get("NAVER_BLOG_ID", "lumi_translate")
 SITE_URL = os.environ.get("SITE_URL", "https://www.lumitrans.co.kr").rstrip("/")
@@ -110,6 +115,54 @@ def json_str(s: str) -> str:
 
 
 # ---------------------------------------------------------------- 메인 처리
+
+def fetch_full_content(link: str, session: requests.Session) -> str | None:
+    """네이버 RSS가 요약만 제공하므로, 글 페이지에서 본문 전체를 직접 가져온다.
+    모바일 페이지(m.blog.naver.com)가 구조가 단순해 우선 시도하고,
+    실패 시 PC용 PostView를 시도한다. 둘 다 실패하면 None (RSS 요약 사용)."""
+    if BeautifulSoup is None:
+        print("    bs4 미설치 — RSS 요약 사용")
+        return None
+    m = re.search(r"/(\d{6,})", link)
+    if not m:
+        return None
+    log_no = m.group(1)
+    candidates = [
+        f"https://m.blog.naver.com/{BLOG_ID}/{log_no}",
+        f"https://blog.naver.com/PostView.naver?blogId={BLOG_ID}&logNo={log_no}",
+    ]
+    for url in candidates:
+        try:
+            r = session.get(url, headers=HEADERS, timeout=25)
+            r.raise_for_status()
+            soup = BeautifulSoup(r.text, "html.parser")
+            container = (
+                soup.select_one("div.se-main-container")   # 스마트에디터 ONE
+                or soup.select_one("div#postViewArea")      # 구버전 에디터
+                or soup.select_one("div.post_ct")           # 모바일 구버전
+            )
+            if not container:
+                continue
+            # 지연 로딩 이미지 실제 주소로 교체
+            for img in container.find_all("img"):
+                lazy = img.get("data-lazy-src") or img.get("data-src")
+                if lazy:
+                    img["src"] = lazy
+                # 광고/스티커 등 src 없는 이미지 제거
+                if not img.get("src"):
+                    img.decompose()
+            # 스크립트·불필요 요소 제거
+            for tag in container.select("script, style, .se-oglink, .se_ad, .naver-splugin"):
+                tag.decompose()
+            html_out = str(container)
+            if len(re.sub(r"<[^>]+>", "", html_out).strip()) > 50:
+                print(f"    본문 전체 수집 성공 ({url.split('/')[2]})")
+                return html_out
+        except Exception as e:
+            print(f"    본문 수집 실패({url[:50]}…): {e}")
+    return None
+
+
 def fetch_rss() -> list[dict]:
     print(f"RSS 요청: {RSS_URL}")
     r = requests.get(RSS_URL, headers=HEADERS, timeout=30)
@@ -277,7 +330,11 @@ def main():
             continue
         slug = slugify(post["title"], post["link"])
         print(f"  새 글: {post['title'][:40]} → {slug}.html")
-        content = clean_naver_html(post["content"])
+        full = fetch_full_content(post["link"], session)
+        raw = full if full else post["content"]
+        if not full:
+            print("    (RSS 요약으로 대체)")
+        content = clean_naver_html(raw)
         content = download_images(content, slug, session)
         post["content"] = content
         (BLOG_DIR / f"{slug}.html").write_text(render_post(post, slug, template), encoding="utf-8")
