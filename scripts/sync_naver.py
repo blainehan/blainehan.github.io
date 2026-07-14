@@ -92,26 +92,49 @@ def clean_naver_html(content: str) -> str:
     return content.strip()
 
 
+IMG_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+
+
 def download_images(content: str, slug: str, session: requests.Session) -> str:
-    """본문 내 네이버 이미지 → 로컬 다운로드 후 경로 교체."""
+    """본문 내 네이버 이미지 → 로컬 다운로드 후 경로 교체.
+    네이버 이미지 서버는 주소 형식이 까다로워(썸네일 서버는 ?type= 필수 등)
+    여러 후보 주소를 순서대로 시도한다: 원본 서버 전환 → 파라미터 제거 →
+    고화질 파라미터 → 원래 주소 그대로."""
     IMG_DIR.mkdir(parents=True, exist_ok=True)
     imgs = re.findall(r'<img[^>]+src="([^"]+)"', content)
     for i, src in enumerate(imgs):
         url = html.unescape(src)
-        # 네이버 썸네일 파라미터 제거 → 원본 화질
-        url = re.sub(r"\?type=w\d+.*$", "", url)
-        try:
-            r = session.get(url, headers=HEADERS, timeout=20)
-            r.raise_for_status()
-            ext = os.path.splitext(urlparse(url).path)[1] or ".jpg"
-            if len(ext) > 5:
-                ext = ".jpg"
-            fname = f"{slug}-{i+1}{ext}"
-            (IMG_DIR / fname).write_bytes(r.content)
-            content = content.replace(src, f"/assets/images/posts/{fname}")
-            print(f"    이미지 저장: {fname}")
-        except Exception as e:
-            print(f"    이미지 다운로드 실패({url[:60]}…): {e}")
+        base = re.sub(r"\?.*$", "", url)
+        candidates = []
+        if "mblogthumb-phinf.pstatic.net" in base:
+            # 썸네일 서버 → 원본 서버로 전환 시도 (최고 화질)
+            candidates.append(base.replace("mblogthumb-phinf.pstatic.net", "postfiles.pstatic.net"))
+        candidates += [base, base + "?type=w966", url]
+        # 중복 제거 (순서 유지)
+        seen, ordered = set(), []
+        for c in candidates:
+            if c not in seen:
+                seen.add(c); ordered.append(c)
+        data, last_err = None, None
+        for cand in ordered:
+            try:
+                r = session.get(cand, headers=HEADERS, timeout=20)
+                r.raise_for_status()
+                if r.content:
+                    data = r.content
+                    break
+            except Exception as e:
+                last_err = e
+        if data is None:
+            print(f"    이미지 다운로드 실패({url[:60]}…): {last_err}")
+            continue
+        ext = os.path.splitext(urlparse(base).path)[1].lower()
+        if ext not in IMG_EXTS:
+            ext = ".jpg"
+        fname = f"{slug}-{i+1}{ext}"
+        (IMG_DIR / fname).write_bytes(data)
+        content = content.replace(src, f"/assets/images/posts/{fname}")
+        print(f"    이미지 저장: {fname}")
     return content
 
 
