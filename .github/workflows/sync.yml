@@ -19,7 +19,7 @@ jobs:
           python-version: "3.12"
 
       - name: 의존성 설치
-        run: pip install requests
+        run: pip install requests beautifulsoup4
 
       - name: RSS 동기화 실행
         env:
