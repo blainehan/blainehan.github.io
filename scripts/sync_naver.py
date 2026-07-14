@@ -37,6 +37,13 @@ BLOG_ID = os.environ.get("NAVER_BLOG_ID", "lumi_translate")
 SITE_URL = os.environ.get("SITE_URL", "https://www.lumitrans.co.kr").rstrip("/")
 RSS_URL = f"https://rss.blog.naver.com/{BLOG_ID}.xml"
 
+# 홈페이지에 게시하지 않을 카테고리 (쉼표로 구분, 환경변수로 재정의 가능)
+EXCLUDE_CATEGORIES = {
+    c.strip() for c in os.environ.get(
+        "EXCLUDE_CATEGORIES", "번역서 소개,오시는 길,번역과 일상"
+    ).split(",") if c.strip()
+}
+
 ROOT = Path(__file__).resolve().parent.parent
 BLOG_DIR = ROOT / "blog"
 IMG_DIR = ROOT / "assets" / "images" / "posts"
@@ -328,6 +335,11 @@ def main():
     for post in fetch_rss():
         if post["link"] in known:
             continue
+        if post.get("category", "").strip() in EXCLUDE_CATEGORIES:
+            print(f"  제외(카테고리: {post['category']}): {post['title'][:36]}")
+            known[post["link"]] = {"excluded": True, "category": post["category"]}
+            new_count_dummy = None  # 기록만 남기고 게시하지 않음
+            continue
         slug = slugify(post["title"], post["link"])
         print(f"  새 글: {post['title'][:40]} → {slug}.html")
         full = fetch_full_content(post["link"], session)
@@ -348,12 +360,12 @@ def main():
         }
         new_count += 1
 
+    DATA_FILE.write_text(json.dumps(known, ensure_ascii=False, indent=2), encoding="utf-8")
     if new_count == 0:
-        print("새 글 없음 — 종료")
+        print("새로 게시할 글 없음 — 종료")
         return
 
-    DATA_FILE.write_text(json.dumps(known, ensure_ascii=False, indent=2), encoding="utf-8")
-    records = sorted(known.values(), key=lambda r: r["date_iso"], reverse=True)
+    records = sorted([r for r in known.values() if not r.get("excluded")], key=lambda r: r["date_iso"], reverse=True)
     build_blog_index(records)
     update_home_recent(records)
     build_sitemap(records)
