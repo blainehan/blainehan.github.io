@@ -323,11 +323,34 @@ def build_sitemap(records: list[dict]):
     print("sitemap.xml 갱신 완료")
 
 
+
+def cleanup_excluded(known: dict) -> int:
+    """이미 게시된 글 중 제외 카테고리에 해당하는 것을 소급 제거한다."""
+    removed = 0
+    for link, rec in list(known.items()):
+        if rec.get("excluded"):
+            continue
+        if rec.get("category", "").strip() in EXCLUDE_CATEGORIES:
+            slug = rec.get("slug", "")
+            if slug:
+                f = BLOG_DIR / f"{slug}.html"
+                if f.exists():
+                    f.unlink()
+                for img in IMG_DIR.glob(f"{slug}-*"):
+                    img.unlink()
+            print(f"  기존 게시글 내림(제외 카테고리 '{rec.get('category','')}'): {rec.get('title','')[:36]}")
+            known[link] = {"excluded": True, "category": rec.get("category", "")}
+            removed += 1
+    return removed
+
+
 def main():
     BLOG_DIR.mkdir(exist_ok=True)
     DATA_FILE.parent.mkdir(exist_ok=True)
     template = TEMPLATE_FILE.read_text(encoding="utf-8")
     known = json.loads(DATA_FILE.read_text(encoding="utf-8")) if DATA_FILE.exists() else {}
+
+    removed = cleanup_excluded(known)
 
     session = requests.Session()
     new_count = 0
@@ -361,15 +384,15 @@ def main():
         new_count += 1
 
     DATA_FILE.write_text(json.dumps(known, ensure_ascii=False, indent=2), encoding="utf-8")
-    if new_count == 0:
-        print("새로 게시할 글 없음 — 종료")
+    if new_count == 0 and removed == 0:
+        print("변경 사항 없음 — 종료")
         return
 
     records = sorted([r for r in known.values() if not r.get("excluded")], key=lambda r: r["date_iso"], reverse=True)
     build_blog_index(records)
     update_home_recent(records)
     build_sitemap(records)
-    print(f"완료: 새 글 {new_count}개 게시")
+    print(f"완료: 새 글 {new_count}개 게시, 기존 글 {removed}개 내림")
 
 
 if __name__ == "__main__":
