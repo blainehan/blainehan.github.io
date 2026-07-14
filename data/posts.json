@@ -392,11 +392,15 @@
     "date_display": "2026. 04. 23"
   },
   "https://blog.naver.com/lumi_translate/224260223380?fromRss=true&trackingCode=rss": {
-    "slug": "post-224260223380",
-    "title": "[번역작업 소개] 리노베이션 공공건축_조치원 문화정원",
-    "category": "번역서 소개",
-    "description": "중요한 번역을 맡기기 위해서는 얼마나 믿을만한 번역가인지 궁금할 때가 있죠. 그래서 제가 지금껏 해왔던 번역작업을 간간히 소개해보고자 합니다. 다음은 삼시옷 사무소가 국토교통부 공공건축 사업을…",
-    "date_iso": "2026-04-21T17:34:09+09:00",
-    "date_display": "2026. 04. 21"
+    "excluded": true,
+    "category": "번역서 소개"
+  },
+  "https://blog.naver.com/lumi_translate/224346144685?fromRss=true&trackingCode=rss": {
+    "slug": "2026-7-224346144685",
+    "title": "[2026.7] 개명 관련 수속 위한 기본증명서 및 가족관계증명서 번역했습니다.",
+    "category": "가족/기본/혼인관계",
+    "description": "한국 국적과 더불어 다른 나라의 국적을 가진 분이 한국에서 개명을 한 뒤 외국 여권을 다시 발급받으시는 경우, 한국에서 발급한 기본증명서 및 가족관계증명서를 번역하여 제출해야 하는 경우가…",
+    "date_iso": "2026-07-14T12:27:25+09:00",
+    "date_display": "2026. 07. 14"
   }
 }
