@@ -366,5 +366,9 @@
     "description": "해외에서 가족이나 친인척이 사망하신 경우 국내 행정기관에 사망신고 및 기타 사망관련 보상절차를 진행하기 위해 해외에서 발급받은 영문 사망증명서를 국문으로 번역하여 제출해야 하는 경우가 있습니다 .…",
     "date_iso": "2026-07-16T18:35:16+09:00",
     "date_display": "2026. 07. 16"
+  },
+  "https://blog.naver.com/lumi_translate/224349351461?fromRss=true&trackingCode=rss": {
+    "excluded": true,
+    "category": "번역과 일상"
   }
 }
