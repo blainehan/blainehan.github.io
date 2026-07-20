@@ -370,5 +370,13 @@
   "https://blog.naver.com/lumi_translate/224349351461?fromRss=true&trackingCode=rss": {
     "excluded": true,
     "category": "번역과 일상"
+  },
+  "https://blog.naver.com/lumi_translate/224352144364?fromRss=true&trackingCode=rss": {
+    "slug": "2026-7-fbi-224352144364",
+    "title": "[2026. 7] 정보공개 요청에 대한 미국 FBI 회신 번역했습니다.",
+    "category": "법원서류(판결문/약식명령/소장",
+    "description": "비자, 이민 등과 관련해서 다양한 수속을 거치시는 도중, 필요한 정보를 미국 법무부 연방수사국(FBI)에 요청해야 하는 경우가 있습니다. 범죄경력 조회가 될 수도 있고, 출생 및 사망 등에 관련…",
+    "date_iso": "2026-07-20T15:58:59+09:00",
+    "date_display": "2026. 07. 20"
   }
 }
