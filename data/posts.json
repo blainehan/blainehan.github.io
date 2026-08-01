@@ -418,5 +418,9 @@
     "description": "​ 해외 유학, 이민, 투자 등을 위해 해외 은행을 비롯한 다양한 기관에서 한국 은행의 거래내역서 제출을 요구하는 경우가 있습니다. 은행 거래내역서를 통해 해당인의 자금 규모와 자금의 투명성을…",
     "date_iso": "2026-07-31T11:31:10+09:00",
     "date_display": "2026. 07. 31"
+  },
+  "https://blog.naver.com/lumi_translate/224363802472?fromRss=true&trackingCode=rss": {
+    "excluded": true,
+    "category": "번역과 일상"
   }
 }
