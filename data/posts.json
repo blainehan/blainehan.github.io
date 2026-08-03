@@ -422,5 +422,13 @@
   "https://blog.naver.com/lumi_translate/224363802472?fromRss=true&trackingCode=rss": {
     "excluded": true,
     "category": "번역과 일상"
+  },
+  "https://blog.naver.com/lumi_translate/224366522340?fromRss=true&trackingCode=rss": {
+    "slug": "2026-8-224366522340",
+    "title": "[2026.8] 해외은행 제출용 외국환계산서, 전신송금영수증, 전신문조회 내역서 번역했습니다.",
+    "category": "유학/이민/취업/비자",
+    "description": "해외 이민, 유학, 투자, 사업 등의 과정에서 해외 은행과 거래 하다 보면, 한 국 자산 내역 및 출처, 자금의 흐름을 투명하게 입증할 필요 가 있는 경우가 있습니다. ​ 특히 해외에서 투자를…",
+    "date_iso": "2026-08-03T11:56:34+09:00",
+    "date_display": "2026. 08. 03"
   }
 }
