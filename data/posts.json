@@ -494,5 +494,9 @@
     "description": "가처분 결정문이란 법원이 채권자의 신청을 받아들여 다툼의 대상인 권리나 현상을 동결하거나 임시 지위를 정하기 위해 내리는 재판의 공식 문서입니다. 결정문에는 당사자 인적사항, 피보전권리,…",
     "date_iso": "2026-08-14T12:56:39+09:00",
     "date_display": "2026. 08. 14"
+  },
+  "https://blog.naver.com/lumi_translate/224381382215?fromRss=true&trackingCode=rss": {
+    "excluded": true,
+    "category": "번역과 일상"
   }
 }
