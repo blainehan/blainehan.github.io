@@ -498,5 +498,13 @@
   "https://blog.naver.com/lumi_translate/224381382215?fromRss=true&trackingCode=rss": {
     "excluded": true,
     "category": "번역과 일상"
+  },
+  "https://blog.naver.com/lumi_translate/224378440042?fromRss=true&trackingCode=rss": {
+    "slug": "2026-8-224378440042",
+    "title": "[2026.8] 미국 세관 제출용 처방전 번역 및 번역확인증명서 발급했습니다.",
+    "category": "의료문서번역",
+    "description": "미국에 방문할 때 처방약을 지참해야 한다면 세관에 어떻게 신고를 해야 할까요? ​ 일반적으로 미국 입국 시 처방약은 최대 90일 분량 까지 개인 용도로 반입할 수 있으며, 반드시 원래 용기 에…",
+    "date_iso": "2026-08-18T13:30:00+09:00",
+    "date_display": "2026. 08. 18"
   }
 }
