@@ -610,5 +610,9 @@
     "description": "법원에 제출할 증거자료가 영문 일 경우에는 공신력 있는 번역사(대표적으로 번역행정사)에게 번역 한 뒤 번역행정사의 촉탁에 의해 공증사무소에서 인증 을 거쳐야 합니다. ​ 증거자료가 아무리…",
     "date_iso": "2026-09-16T16:10:00+09:00",
     "date_display": "2026. 09. 16"
+  },
+  "https://blog.naver.com/lumi_translate/224416042991?fromRss=true&trackingCode=rss": {
+    "excluded": true,
+    "category": "번역과 일상"
   }
 }
