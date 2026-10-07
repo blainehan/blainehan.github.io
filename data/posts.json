@@ -614,5 +614,13 @@
   "https://blog.naver.com/lumi_translate/224416042991?fromRss=true&trackingCode=rss": {
     "excluded": true,
     "category": "번역과 일상"
+  },
+  "https://blog.naver.com/lumi_translate/224433163350?fromRss=true&trackingCode=rss": {
+    "slug": "2026-10-224433163350",
+    "title": "[2026.10] 국제학교 입학용 생활기록부 번역했습니다.",
+    "category": "성적/졸업/생활기록부",
+    "description": "국제학교 입시를 준비하기 위해서는 국문 생활기록부를 영문으로 번역 하여 제출해야 합니다. 대부분의 학교에서 최근 3년간의 생활기록부 내용을 제출하도록 요청하지만, 초등학교 생활기록부 전체를…",
+    "date_iso": "2026-10-06T17:13:56+09:00",
+    "date_display": "2026. 10. 06"
   }
 }
