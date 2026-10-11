@@ -638,5 +638,9 @@
     "description": "의료와 관련한 문서로는 진단서, 의사 소견서 , 처방전 등의 번역 의뢰가 가장 많지만, 이번에는 성인 ADHD 검사의 결과보고서(CAT RESULT REPORT for ADULT ADHD)을…",
     "date_iso": "2026-10-08T20:58:00+09:00",
     "date_display": "2026. 10. 08"
+  },
+  "https://blog.naver.com/lumi_translate/224437046575?fromRss=true&trackingCode=rss": {
+    "excluded": true,
+    "category": "번역과 일상"
   }
 }
