@@ -642,5 +642,13 @@
   "https://blog.naver.com/lumi_translate/224437046575?fromRss=true&trackingCode=rss": {
     "excluded": true,
     "category": "번역과 일상"
+  },
+  "https://blog.naver.com/lumi_translate/224439181747?fromRss=true&trackingCode=rss": {
+    "slug": "2026-10-summary-order-224439181747",
+    "title": "[2026.10] 미국 비자 발급용 약식명령(Summary Order) 영문번역했습니다.",
+    "category": "법원서류(판결문/약식명령/소장",
+    "description": "미국의 대표적인 단기 방문 비자인 B2 등의 비자발급 을 위해 한국 법원에서 받은 약식명령을 번역해서 대사관에 제출 해야 하는 경우가 있습니다. ​ 약식명령(Summary Order) 은 법원이…",
+    "date_iso": "2026-10-12T16:37:40+09:00",
+    "date_display": "2026. 10. 12"
   }
 }
