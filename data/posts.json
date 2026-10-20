@@ -686,5 +686,13 @@
   "https://blog.naver.com/lumi_translate/224444681261?fromRss=true&trackingCode=rss": {
     "excluded": true,
     "category": "번역과 일상"
+  },
+  "https://blog.naver.com/lumi_translate/224446806662?fromRss=true&trackingCode=rss": {
+    "slug": "2026-10-fbi-fbi-background-check-224446806662",
+    "title": "[2026.10] 미국 FBI 범죄경력증명서(FBI Background Check) 번역했습니다.",
+    "category": "유학/이민/취업/비자",
+    "description": "미국인이 한국에 입국하거나 생활하기 위해 FBI 범죄경력증명서(FBI Criminal History Record Check 또는 FBI Background Check) 를 제출해야 하는 경우가…",
+    "date_iso": "2026-10-19T18:03:14+09:00",
+    "date_display": "2026. 10. 19"
   }
 }
