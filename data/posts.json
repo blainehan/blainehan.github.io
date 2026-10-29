@@ -742,5 +742,9 @@
     "description": "미국에서 가족이 사망했을 때, 한국의 구청 등에도 사망신고를 해야 하는 경우가 있습니다. 이때 제출해야 하는 서류는 구청 등에 직접 확인해야 하지만 기본적으로는 다음과 같습니다. ​ 사망신고 시…",
     "date_iso": "2026-10-27T15:10:38+09:00",
     "date_display": "2026. 10. 27"
+  },
+  "https://blog.naver.com/lumi_translate/224457454896?fromRss=true&trackingCode=rss": {
+    "excluded": true,
+    "category": "번역과 일상"
   }
 }
