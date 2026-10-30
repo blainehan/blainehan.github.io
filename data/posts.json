@@ -746,5 +746,9 @@
   "https://blog.naver.com/lumi_translate/224457454896?fromRss=true&trackingCode=rss": {
     "excluded": true,
     "category": "번역과 일상"
+  },
+  "https://blog.naver.com/lumi_translate/224457742839?fromRss=true&trackingCode=rss": {
+    "excluded": true,
+    "category": "번역서 소개"
   }
 }
