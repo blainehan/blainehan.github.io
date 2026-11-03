@@ -762,5 +762,13 @@
   "https://blog.naver.com/lumi_translate/224461259529?fromRss=true&trackingCode=rss": {
     "excluded": true,
     "category": "번역과 일상"
+  },
+  "https://blog.naver.com/lumi_translate/224462273857?fromRss=true&trackingCode=rss": {
+    "slug": "2026-11-medical-test-medical-rating-scale-224462273857",
+    "title": "[2026. 11] 영국 의료기관 처방 요청용 의료검사지(Medical Test, Medical Rating Scale) 영문번역했습니다.",
+    "category": "의료문서번역",
+    "description": "의료와 관련한 문서로는 진단서, 의사 소견서 , 처방전 등의 번역 의뢰가 가장 많지만, 한국에서 받은 검사를 토대로 영국의 병원에 치료 및 처방을 요청하기 위한 검사지(Medical Test,…",
+    "date_iso": "2026-11-02T14:48:04+09:00",
+    "date_display": "2026. 11. 02"
   }
 }
