@@ -443,6 +443,24 @@ def update_home_recent(records: list[dict]):
     print("index.html 최신 글 영역 갱신 완료")
 
 
+def update_home_categories(records: list[dict]):
+    """홈페이지 '번역·행정 가이드' 영역의 분류 버튼 갱신 (SYNC:CATEGORY_NAV 마커 사이 교체).
+    index.html 에 마커가 없으면 아무것도 하지 않는다."""
+    if not HOME_FILE.exists():
+        return
+    src = HOME_FILE.read_text(encoding="utf-8")
+    if "<!-- SYNC:CATEGORY_NAV_START -->" not in src:
+        return
+    nav = category_nav_html(group_by_category(records), None)
+    src = re.sub(
+        r"(<!-- SYNC:CATEGORY_NAV_START -->)[\s\S]*?(<!-- SYNC:CATEGORY_NAV_END -->)",
+        lambda m: f"{m.group(1)}\n{nav}\n      {m.group(2)}",
+        src,
+    )
+    HOME_FILE.write_text(src, encoding="utf-8")
+    print("index.html 분류 버튼 갱신 완료")
+
+
 def build_sitemap(records: list[dict]):
     today = datetime.now().strftime("%Y-%m-%d")
     urls = []
@@ -570,6 +588,7 @@ def main():
     build_blog_index(records)
     build_category_pages(records)
     update_home_recent(records)
+    update_home_categories(records)
     build_sitemap(records)
     print(f"완료: 새 글 {new_count}개 게시, 기존 글 {removed}개 내림")
 
