@@ -866,5 +866,9 @@
     "description": "미국 국적의 개인이 한국에서 생활하며 미국에서 발급받은 자녀의 출생증명서 (CERTIFICATION OF LIVE BIRTH) 를 제출해야 하는 경우가 있습니다. 대표적인 제출 상황은 다음과…",
     "date_iso": "2026-11-11T18:11:12+09:00",
     "date_display": "2026. 11. 11"
+  },
+  "https://blog.naver.com/lumi_translate/224477060117?fromRss=true&trackingCode=rss": {
+    "excluded": true,
+    "category": "번역과 일상"
   }
 }
