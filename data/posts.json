@@ -874,5 +874,13 @@
   "https://blog.naver.com/lumi_translate/224477933041?fromRss=true&trackingCode=rss": {
     "excluded": true,
     "category": "번역과 일상"
+  },
+  "https://blog.naver.com/lumi_translate/224479165637?fromRss=true&trackingCode=rss": {
+    "slug": "2026-11-sam-gov-certificate-of-all-registered-matters-224479165637",
+    "title": "[2026.11] 미국 조달관리 시스템 (SAM.gov) 기관 등록 관련 법인 등기부등본 (Certificate of All Registered Matters) 영문 번역했습니다",
+    "category": "기업서류(정관/재무/총회)",
+    "description": "미국 연방정부와 거래나 조달에 참여하려는 모든 기업과 기관 은 공식 조달 관리 시스템인 SAM.gov 에 등록해야 합니다. ​ 등록을 위해서는 참고해야 할 사항으로는 다음이 가장 대표적입니다. ​…",
+    "date_iso": "2026-11-16T15:05:03+09:00",
+    "date_display": "2026. 11. 16"
   }
 }
